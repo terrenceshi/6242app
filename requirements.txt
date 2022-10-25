@@ -95,6 +95,7 @@ grpcio @ file:///C:/ci/grpcio_1637590978642/work
 h5py @ file:///C:/ci/h5py_1637120894255/work
 HeapDict @ file:///Users/ktietz/demo/mc3/conda-bld/heapdict_1630598515714/work
 holoviews @ file:///opt/conda/conda-bld/holoviews_1645454331194/work
+huggingface-hub==0.10.1
 hvplot @ file:///tmp/build/80754af9/hvplot_1627305124151/work
 hyperlink @ file:///tmp/build/80754af9/hyperlink_1610130746837/work
 idna @ file:///tmp/build/80754af9/idna_1637925883363/work
@@ -258,6 +259,8 @@ scipy==1.9.2
 Scrapy @ file:///C:/ci/scrapy_1646837986255/work
 seaborn @ file:///tmp/build/80754af9/seaborn_1629307859561/work
 Send2Trash @ file:///tmp/build/80754af9/send2trash_1632406701022/work
+sentence-transformers==2.2.2
+sentencepiece==0.1.97
 service-identity @ file:///Users/ktietz/demo/mc3/conda-bld/service_identity_1629460757137/work
 sip==4.19.13
 six @ file:///tmp/build/80754af9/six_1644875935023/work
@@ -294,12 +297,16 @@ three-merge @ file:///tmp/build/80754af9/three-merge_1607553261110/work
 tifffile @ file:///tmp/build/80754af9/tifffile_1627275862826/work
 tinycss @ file:///tmp/build/80754af9/tinycss_1617713798712/work
 tldextract @ file:///opt/conda/conda-bld/tldextract_1646638314385/work
+tokenizers==0.13.1
 toml @ file:///tmp/build/80754af9/toml_1616166611790/work
 tomli @ file:///tmp/build/80754af9/tomli_1637314251069/work
 toolz @ file:///tmp/build/80754af9/toolz_1636545406491/work
+torch==1.12.1
+torchvision==0.13.1
 tornado @ file:///C:/ci/tornado_1606924294691/work
 tqdm @ file:///C:/ci/tqdm_1650636210717/work
 traitlets @ file:///tmp/build/80754af9/traitlets_1636710298902/work
+transformers==4.23.1
 Twisted @ file:///C:/ci/twisted_1646835413846/work
 twisted-iocpsupport @ file:///C:/ci/twisted-iocpsupport_1646798932792/work
 typed-ast @ file:///C:/ci/typed-ast_1624953797214/work
