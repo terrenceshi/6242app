@@ -1,4 +1,4 @@
-# 6242model
+# 6242app
 
 Currently have a requirements.txt based off of my notebook environment but its possible theres a bit too much stuff in there atm...
 
