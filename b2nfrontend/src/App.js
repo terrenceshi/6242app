@@ -1,23 +1,70 @@
-import logo from './logo.svg';
 import './App.css';
+import * as React from 'react';
+
+import { Typography, TextField, Box, Button } from '@mui/material';
+
+//each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
 
 function App() {
+  //const [value, setValue] = React.useState('Controlled');
+
+  var title = ""
+  var author = ""
+
+  const getTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //setValue(event.target.value);
+    title = event.target.value
+  }
+  const getAuthor = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //setValue(event.target.value);
+    author = event.target.value
+  }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //setValue(event.target.value);
+    console.log(title)
+    console.log(author)
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload !!!!!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React, guy
-        </a>
-      </header>
+
+      <Typography variant="h1" component="h2">
+        From books to nooks
+      </Typography>
+      
+      <Box
+        component="form"
+        sx={{
+          '& .MuiTextField-root': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+      
+        <div>
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Enter Book Title"
+            multiline
+            maxRows={4}
+            onChange={getTitle}
+          />
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Enter Author Name"
+            multiline
+            maxRows={4}
+            onChange={getAuthor}
+          />
+          
+        </div>
+
+        <Button
+          variant="contained"
+          onClick={handleChange}>
+            Generate Playlist
+        </Button>
+      </Box>
+
     </div>
   );
 }
