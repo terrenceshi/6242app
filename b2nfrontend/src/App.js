@@ -1,6 +1,10 @@
 import './App.css';
 import * as React from 'react';
 
+import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
+import Home from "./Home"
+import Issue from "./Issue"
+
 import { Typography, TextField, Box, Button } from '@mui/material';
 
 //each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
@@ -8,62 +12,17 @@ import { Typography, TextField, Box, Button } from '@mui/material';
 function App() {
   //const [value, setValue] = React.useState('Controlled');
 
-  var title = ""
-  var author = ""
-
-  const getTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //setValue(event.target.value);
-    title = event.target.value
-  }
-  const getAuthor = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //setValue(event.target.value);
-    author = event.target.value
-  }
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //setValue(event.target.value);
-    console.log(title)
-    console.log(author)
-  };
   return (
     <div className="App">
 
-      <Typography variant="h1" component="h2">
+      <Typography variant="h1">
         From books to nooks
       </Typography>
       
-      <Box
-        component="form"
-        sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-      
-        <div>
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Enter Book Title"
-            multiline
-            maxRows={4}
-            onChange={getTitle}
-          />
-          <TextField
-            id="outlined-multiline-flexible"
-            label="Enter Author Name"
-            multiline
-            maxRows={4}
-            onChange={getAuthor}
-          />
-          
-        </div>
-
-        <Button
-          variant="contained"
-          onClick={handleChange}>
-            Generate Playlist
-        </Button>
-      </Box>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Issue" element={<Issue />} />
+      </Routes>
 
     </div>
   );
