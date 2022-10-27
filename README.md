@@ -4,7 +4,7 @@ Currently have a requirements.txt based off of my notebook environment but its p
 
 pip install -r requirements.txt for the model.
 
-npm install for the frontend.
+npm install for the frontend (after u cd into frontend folder).
 
 Be sure to mainly work on dev branch and to make sure everything works well before pull request. I don't have any permissions for the pull request or anything so you can just do it whenever.
 
