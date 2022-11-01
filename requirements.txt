@@ -12,7 +12,7 @@ arrow @ file:///opt/conda/conda-bld/arrow_1649166651673/work
 astroid @ file:///C:/ci/astroid_1628063282661/work
 astropy @ file:///C:/ci/astropy_1650634291321/work
 asttokens @ file:///opt/conda/conda-bld/asttokens_1646925590279/work
-async-timeout @ file:///tmp/build/80754af9/async-timeout_1637851218186/work
+async-timeout==4.0.2
 atomicwrites==1.4.0
 attrs @ file:///opt/conda/conda-bld/attrs_1642510447205/work
 Automat @ file:///tmp/build/80754af9/automat_1600298431173/work
@@ -67,6 +67,7 @@ datashape==0.5.4
 debugpy @ file:///C:/ci/debugpy_1637091961445/work
 decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
 defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
+Deprecated==1.2.13
 diff-match-patch @ file:///Users/ktietz/demo/mc3/conda-bld/diff-match-patch_1630511840874/work
 distributed @ file:///opt/conda/conda-bld/distributed_1647271944416/work
 docutils @ file:///C:/ci/docutils_1620828264669/work
@@ -244,6 +245,7 @@ QtAwesome @ file:///tmp/build/80754af9/qtawesome_1637160816833/work
 qtconsole @ file:///opt/conda/conda-bld/qtconsole_1649078897110/work
 QtPy @ file:///opt/conda/conda-bld/qtpy_1649073884068/work
 queuelib==1.5.0
+redis==4.3.4
 regex @ file:///C:/ci/regex_1648447888413/work
 requests @ file:///opt/conda/conda-bld/requests_1641824580448/work
 requests-file @ file:///Users/ktietz/demo/mc3/conda-bld/requests-file_1629455781986/work
@@ -277,6 +279,7 @@ sphinxcontrib-htmlhelp @ file:///tmp/build/80754af9/sphinxcontrib-htmlhelp_16239
 sphinxcontrib-jsmath @ file:///home/ktietz/src/ci/sphinxcontrib-jsmath_1611920942228/work
 sphinxcontrib-qthelp @ file:///home/ktietz/src/ci/sphinxcontrib-qthelp_1611921055322/work
 sphinxcontrib-serializinghtml @ file:///tmp/build/80754af9/sphinxcontrib-serializinghtml_1624451540180/work
+spotipy==2.21.0
 spyder @ file:///C:/ci/spyder_1636480369575/work
 spyder-kernels @ file:///C:/ci/spyder-kernels_1634237096710/work
 SQLAlchemy @ file:///C:/ci/sqlalchemy_1647600017103/work
