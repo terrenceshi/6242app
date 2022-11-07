@@ -136,11 +136,13 @@ jupyterlab-server @ file:///opt/conda/conda-bld/jupyterlab_server_1644500396812/
 jupyterlab-widgets @ file:///tmp/build/80754af9/jupyterlab_widgets_1609884341231/work
 keyring @ file:///C:/ci/keyring_1638531673471/work
 kiwisolver @ file:///C:/ci/kiwisolver_1644962577370/work
+langdetect==1.0.9
 lazy-object-proxy @ file:///C:/ci/lazy-object-proxy_1616529288960/work
 libarchive-c @ file:///tmp/build/80754af9/python-libarchive-c_1617780486945/work
 llvmlite==0.38.0
 locket @ file:///C:/ci/locket_1647006279389/work
 lxml @ file:///C:/ci/lxml_1646642862366/work
+lyricsgenius==3.0.1
 Markdown @ file:///C:/ci/markdown_1614364082838/work
 MarkupSafe @ file:///C:/ci/markupsafe_1621528502553/work
 matplotlib @ file:///C:/ci/matplotlib-suite_1647423638658/work
