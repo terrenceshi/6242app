@@ -29,7 +29,7 @@ function Home() {
   };
   
   return (
-    <div className="Home">
+    <div>
       <Box
         component="form"
         
