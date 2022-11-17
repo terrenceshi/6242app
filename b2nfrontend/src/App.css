@@ -2,69 +2,81 @@ html {
 	background-image: url("./backgroundImg.gif");
 	background-size: cover;
 	font-family: "Lucida Console";
+	text-align: center;
+	height: 1200px;
+	width: 1200px;
 }
 
-.main {
-  text-align: center;
-  min-height: 150vh;
+.App {
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .title {
 	color: #ffffff;
+	position: absolute;
+	top: 10px;
+	left: 450px;
 }
 
 .subtitle {
 	font-style: italic;
 	color: #46e0ff;
+	position: absolute;
+	top: 80px;
+	left: 470px;
 }
 .field {
 	background-color: #ffffff;
-	position: relative;
+	position: absolute;
 	padding: 10px;
-	top: 240px;
+	top: 140px;
+	left: 150px;
 }
 
 .song-field {
 	background-color: #ffffff;
-	position: relative;
 	padding: 10px;
-	top: 410px;
-	left: 410px;
+	position: absolute;
+	top: 730px;
+	left: 490px;
 }
 .button {
-	position: relative;
-	top: 250px;
+	position: absolute;
+	top: 150px;
+	left: 150px;
 }
 
 .song-button {
-	position: relative;
-	top: 410px;
-	left: 460px;
+	position: absolute;
+	top: 740px;
+	left: 500px;
 }
 .text {
 	text-align: left;
 	color: #ffffff;
-	position: relative;
-	top: 550px;
-	left: 150px;
+	position: absolute;
+	top: 1050px;
+	left: 250px;
 }
 
 .preferences {
 	color: #00ff80;
-	position: relative;
 	text-align: left;
-	top: 438px;
-	left: 1000px;
+	position: absolute;
+	top: 1050px;
+	left: 940px;
 }
 
 .link {
 	text-align: left;
-	position: relative;
-	top: 520px;
-	left: -530px;
-	color: blue;
+	position: absolute;
+	top: 1110px;
+	left: 250px;
+	color: #ff00ff;
 }
