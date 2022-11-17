@@ -1,70 +1,38 @@
-html {
-	background-image: url("./backgroundImg.gif");
-	background-size: cover;
-	font-family: "Lucida Console";
+.App {
+  text-align: center;
 }
 
-.main {
-  text-align: center;
-  min-height: 150vh;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.title {
-	color: #ffffff;
+.App-link {
+  color: #61dafb;
 }
 
-.subtitle {
-	font-style: italic;
-	color: #46e0ff;
-}
-.field {
-	background-color: #ffffff;
-	position: relative;
-	padding: 10px;
-	top: 240px;
-}
-
-.song-field {
-	background-color: #ffffff;
-	position: relative;
-	padding: 10px;
-	top: 410px;
-	left: 410px;
-}
-.button {
-	position: relative;
-	top: 250px;
-}
-
-.song-button {
-	position: relative;
-	top: 410px;
-	left: 460px;
-}
-.text {
-	text-align: left;
-	color: #ffffff;
-	position: relative;
-	top: 550px;
-	left: 150px;
-}
-
-.preferences {
-	color: #00ff80;
-	position: relative;
-	text-align: left;
-	top: 438px;
-	left: 1000px;
-}
-
-.link {
-	text-align: left;
-	position: relative;
-	top: 520px;
-	left: -530px;
-	color: blue;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
