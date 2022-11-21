@@ -1,15 +1,10 @@
 import './App.css';
 import * as React from 'react';
 
-import { Typography, TextField, Box, Button, Toolbar, AppBar, IconButton, Tabs, Tab, List, Divider, Drawer, Grid, ListItemText, ListItem, Menu, MenuItem } from '@mui/material';
-import Abc from '@mui/icons-material';
+import { Typography, TextField, Box, Button, Toolbar, AppBar, IconButton, Tabs, Tab, List, ListItem, Menu } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import TabList from '@mui/lab/TabList';
 import TabContext from '@mui/lab/TabContext';
-import MenuIcon from "@mui/icons-material/Menu";
-import ListItemIcon from "@mui/icons-material/List";
-import InboxIcon from "@mui/icons-material/Inbox";
-import MailIcon from "@mui/icons-material/Mail";
 import styled from "@mui/styled-engine";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { csv } from 'd3-request';
 import url from "./book_data_with_author.csv";
 import './Home.css';
+
 
 
 
