@@ -2,7 +2,7 @@ html {
 	background-image: url("./backgroundImg.gif");
 	background-size: cover;
 	font-family: "Lucida Console";
-	text-align: center;
+	text-align: left;
 }
 
 .App {
