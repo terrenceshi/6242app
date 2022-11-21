@@ -8,16 +8,12 @@
 }
 
 .title {
-	color: #ffffff;
-	position: relative;
-	top: -50px;
+	color: #000000;
 }
 
 .subtitle {
 	font-style: italic;
 	color: #46e0ff;
-	position: relative;
-	top: -100px;
 }
 .field {
 	background-color: #8800ff;
@@ -25,34 +21,16 @@
 
 .song-field {
 	background-color: #ffff00;
-	position: relative;
-	top: 300px;
-	left: 420px;
-}
-
-.song-button {
-	position: relative;
-	top: 310px;
-	left: 430px;
 }
 .text {
 	text-align: left;
 	color: #000000;
-	position: relative;
-	top: 450px;
-	left: -300px;
 }
 
 .preferences {
 	color: #00ff80;
-	position: relative;
-	top: 330px;
-	left: 400px;
 }
 
 .link {
 	color: #ff00ff;
-	position: relative;
-	top: 420px;
-	left: -610px;
 }
