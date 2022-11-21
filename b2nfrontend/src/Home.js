@@ -198,19 +198,12 @@ function Home() {
 
       <h5
       	className="text"
-      	>Don't like what you see?
+      	>Don't like what you see? Type a song you like:
       </h5>
       <a
-        className="link"
-      	href="https://spotify.com">
+        className="link">
       	Click here
       </a>
-
-      <h5
-      	className="preferences"
-      	>
-      	Type a song you like:
-      </h5>
       <TextField
           	className="song-field"
             id="outlined-multiline-flexible"
