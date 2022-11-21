@@ -15,11 +15,15 @@ function Issue() {
     subject = event.target.value
   }
   const getMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    message = event.target.value
+    message = event.target.value;
   }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(subject)
     console.log(message)
+    document.getElementById('outlined-multiline-flexible_sub').value = '';
+    document.getElementById('outlined-multiline-flexible_mess').value = '';
+    document.getElementById('outlined-multiline-flexible_sub').placeholder = 'Subject';
+    document.getElementById('outlined-multiline-flexible_mess').placeholder = 'Your Message...';
   };
   return (
     <div className="Issue">
@@ -34,22 +38,24 @@ function Issue() {
         noValidate
         autoComplete="off"
       >
-      
+
         <div>
           <TextField
-            id="outlined-multiline-flexible"
-            label="Subject"
+            id="outlined-multiline-flexible_sub"
+            // label="Subject"
+            placeholder="Subject"
             multiline
             maxRows={2}
             onChange={getSubject}
           />
-          
+
         </div>
 
         <div>
           <TextField
-              id="outlined-multiline-flexible"
-              label="Your Message"
+              id="outlined-multiline-flexible_mess"
+              // label="Your Message"
+              placeholder="Your Message..."
               multiline
               rows = {12}
               onChange={getMessage}
