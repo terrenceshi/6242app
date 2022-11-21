@@ -1,0 +1,32 @@
+#wrapper {
+    width: 1500px;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+#Tabs {
+    width: 300px;
+    float:left; /* add this */
+    display: inline;
+}
+
+
+
+#purposeStatement {
+    position: absolute;
+    float:right;
+    display:inline;
+    text-align:center;
+    margin-top: 0px;
+    margin-left: 370px;
+    width: 700px;
+    height: 100px;
+}
+
+#processStatement {
+    /* float:right; */
+    display:inline-block;
+    text-align:center;
+    margin-top: 0px;
+    margin-left: 370px;
+    width: 700px;
+    height: 100px;
+}
