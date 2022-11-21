@@ -9,7 +9,7 @@ import styled from "@mui/styled-engine";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect} from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './bootstrap.min.css';
 import { csv } from 'd3-request';
 import url from "./book_data_with_author.csv";
 import './Home.css';

@@ -21,7 +21,7 @@ function App() {
     <div className="App">
     <Nav />
       <Typography variant="h1">
-        From books to nooks
+        From Books to Nooks
       </Typography>
 
       <Routes>
