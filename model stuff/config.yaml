@@ -1,0 +1,18 @@
+Misc:
+  use_cpu: False
+  wandb_project_name: "Matrix Factorization"
+
+Sparseness:
+  Sparse: True 
+
+NMF model:
+  rank: 10
+
+Sparse Fit:
+  beta: 2
+  verbose: True
+  max_iter: 40
+
+
+
+
