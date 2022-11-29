@@ -6,6 +6,8 @@ HERE IS WHAT YOU NEED TO SET THIS UP:
 -put data and model folders into flask-server
 
 -create a virtual environment
+	-make sure you are cd'd into flask server
+
 	python -m venv venv
 		-you can replace the last venv with any name you like
 
