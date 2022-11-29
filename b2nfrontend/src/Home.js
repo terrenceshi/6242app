@@ -8,6 +8,8 @@ import { csv } from 'd3-request';
 import url from "./book_data_with_author.csv";
 import './Home.css';
 
+import axios, {isCancel, AxiosError} from 'axios';
+
 
 // <script src="jquery-3.6.1.min.js"></script>
 //each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
@@ -15,6 +17,8 @@ const SearchbarDropdown = (props) => {
   const { options, onInputChange } = props;
   const ulRef = useRef();
   const inputRef = useRef();
+
+  const [bookData, setBookData] = useState([{}])
 
   useEffect(() => {
     inputRef.current.addEventListener('click', (event) => {
@@ -58,9 +62,6 @@ const SearchbarDropdown = (props) => {
   );
 };
 
-
-
-
 const book = [];
 
 csv(url, function(err, data) {
@@ -76,29 +77,6 @@ csv(url, function(err, data) {
  console.log(data);
 })
 
-
-
-// function postData(input) {
-//     $.ajax({
-//         type: "POST",
-//         url: "/reverse_pca.py",
-//         data: { param: input },
-//         success: callbackFunc
-//     });
-// }
-//
-// function callbackFunc(response) {
-//     // do something with the response
-//     console.log(response);
-// }
-//
-// postData('data to process');
-
-
-
-
-
-
 function Home() {
   //const [value, setValue] = React.useState('Controlled');
 
@@ -112,7 +90,6 @@ function Home() {
     console.log(song)
   };
 
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
     console.log(bookInput)
@@ -124,6 +101,20 @@ function Home() {
     if (addPref.style.display === 'none') {
         addPref.style.display = 'inline';
     }
+
+    const axiosInput = {};
+    axiosInput[bookInput] = 1
+
+    axios.post('http://127.0.0.1:5000', axiosInput)
+        .then(function(response){
+            console.log(response);
+    //Perform action based on response
+    })
+    .catch(function(error){
+        console.log(error);
+    //Perform action based on error
+    });
+
   };
 
 
@@ -149,10 +140,10 @@ function Home() {
       book.filter((option) => option.toLowerCase().includes(event.target.value.toLowerCase()))
     );
     setBookInput(event.target.value.toLowerCase());
+
   };
 
   return (
-
     <div className="Home">
 
       <Box
@@ -179,7 +170,6 @@ function Home() {
         id="bookSearch"
         className = "bookSearchbarDropdown"
         options={options}
-        value = {bookInput}
         onInputChange={onInputChange}
         renderInput={(params) => <TextField {...params} label="Enter Book Title" />}
       />
