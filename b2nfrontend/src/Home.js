@@ -11,9 +11,9 @@ import './Home.css';
 import axios, {isCancel, AxiosError} from 'axios';
 
 
-// <script src="jquery-3.6.1.min.js"></script>
-//each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
-const SearchbarDropdown = (props) => {
+  // <script src="jquery-3.6.1.min.js"></script>
+  //each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
+  const SearchbarDropdown = (props) => {
   const { options, onInputChange } = props;
   const ulRef = useRef();
   const inputRef = useRef();
@@ -30,7 +30,6 @@ const SearchbarDropdown = (props) => {
       ulRef.current.style.display = 'none';
     });
   }, []);
-
 
   return (
     <div className="search-bar-dropdown">
@@ -74,7 +73,7 @@ csv(url, function(err, data) {
     // }
   }
 
- console.log(data);
+  //console.log(data);
 })
 
 function Home() {
@@ -90,17 +89,13 @@ function Home() {
     console.log(song)
   };
 
+  const playlists = {};
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
     console.log(bookInput)
     var spotifyPlaylist = document.getElementById("spotifyPlaylist");
     var addPref = document.getElementById("addPref");
-    if (spotifyPlaylist.style.display === 'none') {
-        spotifyPlaylist.style.display = 'inline';
-      }
-    if (addPref.style.display === 'none') {
-        addPref.style.display = 'inline';
-    }
 
     const axiosInput = {};
     axiosInput[bookInput] = 1
@@ -108,7 +103,24 @@ function Home() {
     axios.post('http://127.0.0.1:5000', axiosInput)
         .then(function(response){
             console.log(response);
-    //Perform action based on response
+            playlists = response;
+
+            const defaultKey = bookInput + " playlist - default"
+            const defaultUrl = playlists[defaultKey]
+
+            //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
+            //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
+
+            const newUrl = 1;
+
+            if (spotifyPlaylist.style.display === 'none') {
+                spotifyPlaylist.style.display = 'inline';
+              }
+            if (addPref.style.display === 'none') {
+                addPref.style.display = 'inline';
+            }
+
+            
     })
     .catch(function(error){
         console.log(error);
