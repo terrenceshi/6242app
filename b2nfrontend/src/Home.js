@@ -117,8 +117,6 @@ function Home() {
 
   };
 
-
-
   const [options, setOptions] = useState([]);
   const [bookInput, setBookInput] = useState("");
   const [isValid, setValid] = useState(false);
@@ -141,7 +139,14 @@ function Home() {
     );
     setBookInput(event.target.value.toLowerCase());
 
+    console.log(bookInput)
+
   };
+
+  var title = ""
+  const getTitle = (event, value) => {
+    console.log(value)
+  }
 
   return (
     <div className="Home">
@@ -157,23 +162,26 @@ function Home() {
 
       <div className="container">
         <SearchbarDropdown size= "5" 
-        className = "bookSearchbarDropdown"
-        options={options}
-        value = {bookInput}
-        onInputChange={onInputChange}/>
+          className = "bookSearchbarDropdown"
+          options={options}
+          value = {bookInput}
+          onInputChange={onInputChange}
+        />
         <br />
 
       </div>
 
-      <Autocomplete
-        disablePortal
-        id="bookSearch"
-        className = "bookSearchbarDropdown"
-        options={options}
-        onInputChange={onInputChange}
-        renderInput={(params) => <TextField {...params} label="Enter Book Title" />}
-      />
-
+      {/*
+        <Autocomplete
+          disablePortal
+          id="bookSearch"
+          className = "bookSearchbarDropdown"
+          options={book}
+          onChange={getTitle} // prints the selected value
+          renderInput={(params) => <TextField {...params} label="Enter Book Title" />}
+        />
+      */}
+      
       <Button
         variant="contained"
         disabled={!isValid}
