@@ -1,18 +1,14 @@
 import './App.css';
 import * as React from 'react';
 
-import { Typography, TextField, Box, Button, Toolbar, AppBar, IconButton, Tabs, Tab, List, ListItem, Menu } from '@mui/material';
-import TabPanel from '@mui/lab/TabPanel';
-import TabList from '@mui/lab/TabList';
-import TabContext from '@mui/lab/TabContext';
-import styled from "@mui/styled-engine";
-import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { TextField, Box, Button, Autocomplete } from '@mui/material';
 import { useState, useRef, useEffect} from 'react';
 import './bootstrap.min.css';
 import { csv } from 'd3-request';
 import url from "./book_data_with_author.csv";
 import './Home.css';
+
+import axios, {isCancel, AxiosError} from 'axios';
 
 
 // <script src="jquery-3.6.1.min.js"></script>
@@ -21,6 +17,8 @@ const SearchbarDropdown = (props) => {
   const { options, onInputChange } = props;
   const ulRef = useRef();
   const inputRef = useRef();
+
+  const [bookData, setBookData] = useState([{}])
 
   useEffect(() => {
     inputRef.current.addEventListener('click', (event) => {
@@ -64,9 +62,6 @@ const SearchbarDropdown = (props) => {
   );
 };
 
-
-
-
 const book = [];
 
 csv(url, function(err, data) {
@@ -82,29 +77,6 @@ csv(url, function(err, data) {
  console.log(data);
 })
 
-
-
-// function postData(input) {
-//     $.ajax({
-//         type: "POST",
-//         url: "/reverse_pca.py",
-//         data: { param: input },
-//         success: callbackFunc
-//     });
-// }
-//
-// function callbackFunc(response) {
-//     // do something with the response
-//     console.log(response);
-// }
-//
-// postData('data to process');
-
-
-
-
-
-
 function Home() {
   //const [value, setValue] = React.useState('Controlled');
 
@@ -118,18 +90,31 @@ function Home() {
     console.log(song)
   };
 
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
     console.log(bookInput)
     var spotifyPlaylist = document.getElementById("spotifyPlaylist");
     var addPref = document.getElementById("addPref");
-    if (spotifyPlaylist.style.display == 'none') {
+    if (spotifyPlaylist.style.display === 'none') {
         spotifyPlaylist.style.display = 'inline';
       }
-    if (addPref.style.display == 'none') {
+    if (addPref.style.display === 'none') {
         addPref.style.display = 'inline';
     }
+
+    const axiosInput = {};
+    axiosInput[bookInput] = 1
+
+    axios.post('http://127.0.0.1:5000', axiosInput)
+        .then(function(response){
+            console.log(response);
+    //Perform action based on response
+    })
+    .catch(function(error){
+        console.log(error);
+    //Perform action based on error
+    });
+
   };
 
 
@@ -155,14 +140,10 @@ function Home() {
       book.filter((option) => option.toLowerCase().includes(event.target.value.toLowerCase()))
     );
     setBookInput(event.target.value.toLowerCase());
+
   };
 
-
-
-
   return (
-
-
     <div className="Home">
 
       <Box
@@ -174,22 +155,31 @@ function Home() {
         autoComplete="off"
       >
 
-
-
-
-
       <div className="container">
-   <SearchbarDropdown size= "5" className = "bookSearchbarDropdown" options={options} value = {bookInput} onInputChange={onInputChange}/>
-   <br />
+        <SearchbarDropdown size= "5" 
+        className = "bookSearchbarDropdown"
+        options={options}
+        value = {bookInput}
+        onInputChange={onInputChange}/>
+        <br />
 
- </div>
+      </div>
 
- <Button
-   variant="contained"
-   disabled={!isValid}
-   onClick={handleChange}>
-     Generate Playlist
- </Button>
+      <Autocomplete
+        disablePortal
+        id="bookSearch"
+        className = "bookSearchbarDropdown"
+        options={options}
+        onInputChange={onInputChange}
+        renderInput={(params) => <TextField {...params} label="Enter Book Title" />}
+      />
+
+      <Button
+        variant="contained"
+        disabled={!isValid}
+        onClick={handleChange}>
+          Generate Playlist
+      </Button>
 
 
 <div>
