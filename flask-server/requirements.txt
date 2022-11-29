@@ -1,9 +1,9 @@
-Flask @ file:///home/ktietz/src/ci/flask_1611932660458/work
+Flask
 Flask-Cors==3.0.10
-numpy @ file:///C:/ci/numpy_and_numpy_base_1649782970434/work
-numpydoc @ file:///opt/conda/conda-bld/numpydoc_1643788541039/work
-pandas @ file:///C:/ci/pandas_1650373458095/work
-pandocfilters @ file:///opt/conda/conda-bld/pandocfilters_1643405455980/work
+numpy
+numpydoc
+pandas
+pandocfilters
 spotipy==2.21.0
 torch==1.12.1
 torchaudio==0.12.1
