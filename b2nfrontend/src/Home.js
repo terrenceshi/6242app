@@ -89,7 +89,7 @@ function Home() {
     console.log(song)
   };
 
-  const playlists = {};
+  var playlists = {};
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
@@ -97,7 +97,7 @@ function Home() {
     var spotifyPlaylist = document.getElementById("spotifyPlaylist");
     var addPref = document.getElementById("addPref");
 
-    const axiosInput = {};
+    var axiosInput = {};
     axiosInput[bookInput] = 1
 
     axios.post('http://127.0.0.1:5000', axiosInput)
@@ -105,13 +105,25 @@ function Home() {
             console.log(response);
             playlists = response;
 
-            const defaultKey = bookInput + " playlist - default"
-            const defaultUrl = playlists[defaultKey]
+            var defaultKey = bookInput + " playlist - default"
+
+            console.log("FUCK CHIGGAS")
+
+            console.log(defaultKey)
+
+            var defaultUrl = playlists[defaultKey]
+
+            console.log(playlists)
+            console.log(defaultUrl)
 
             //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
             //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
 
-            const newUrl = 1;
+            var split = defaultUrl.split('/');
+
+            var newUrl = "https://open.spotify.com/embed/user/spotify/playlist/" + split[split.length - 1];
+
+            console.log(newUrl)
 
             if (spotifyPlaylist.style.display === 'none') {
                 spotifyPlaylist.style.display = 'inline';
