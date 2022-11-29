@@ -201,7 +201,7 @@ function Home() {
         // episode/7makk4oTQel546B0PZlDM5
         // https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWWvHBEQLnV1N
           id="spotifyPlaylist" style={{display: 'none'}}
-          src="https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWWvHBEQLnV1N"
+          src="https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp"
           width="650" height="380" frameBorder="0" allowtransparency="true">
         </iframe>
 

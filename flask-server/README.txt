@@ -14,7 +14,7 @@ HERE IS WHAT YOU NEED TO SET THIS UP:
 	activate your environment (assuming the name is venv)
 		-source venv/bin/activate for mac
 
-		-venv/scripts/activate
+		-venv\scripts\activate
 
 -download everything you need while in the activated virutal environment
 	-pip install -r requirements.txt
