@@ -27,17 +27,18 @@ function Issue() {
   };
   return (
     <div className="Issue">
-      <Typography variant="h4">
-        Submit Feedback
-      </Typography>
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          '& .MuiTextField-root': { m: 1, width: '600px', padding: '0.25rem' },
+          padding: '1rem'
         }}
         noValidate
         autoComplete="off"
       >
+        <Typography variant="h4">
+          Submit Feedback
+        </Typography>
 
         <div>
           <TextField
