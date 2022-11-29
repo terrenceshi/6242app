@@ -1,7 +1,7 @@
 import './App.css';
 import * as React from 'react';
 
-import { TextField, Box, Button, Autocomplete } from '@mui/material';
+import { TextField, Box, Button, Autocomplete, CircularProgress } from '@mui/material';
 import { useState, useRef, useEffect} from 'react';
 import './bootstrap.min.css';
 import { csv } from 'd3-request';
@@ -102,15 +102,24 @@ function Home() {
     //setValue(event.target.value);
     console.log(bookInput)
     var spotifyPlaylist = document.getElementById("spotifyPlaylist");
+    var progress = document.getElementById("progress");
     var addPref = document.getElementById("addPref");
 
     var axiosInput = {};
     axiosInput[bookInput] = 1
 
+    if (progress.style.display === 'none') {
+      progress.style.display = 'inline';
+    }
+
     axios.post('http://127.0.0.1:5000', axiosInput)
         .then(function(response){
             console.log(response);
             playlists = response['data'];
+
+            if (progress.style.display === 'inline') {
+              progress.style.display = 'none';
+            }
 
             var defaultKey = bookInput + " playlist - default"
 
@@ -119,7 +128,7 @@ function Home() {
             //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
             //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
 
-            console.log("HEREEEE")
+            //console.log("HEREEEE")
             var genre = ""
             for (const [key, value] of Object.entries(playlists)) {
               // console.log(key);
@@ -152,10 +161,6 @@ function Home() {
 
   };
 
-
-
-
-
   const [options, setOptions] = useState([]);
   const [bookInput, setBookInput] = useState("");
   const [isValid, setValid] = useState(false);
@@ -181,10 +186,6 @@ function Home() {
     console.log(bookInput)
 
   };
-
-
-
-
 
   const [genres, setGenreOptions] = useState([]);
   const [genreInput, setGenreInput] = useState("");
@@ -216,8 +217,6 @@ function Home() {
 
   };
 
-
-
   var title = ""
   const getTitle = (event, value) => {
     console.log(value)
@@ -236,84 +235,89 @@ function Home() {
         autoComplete="off"
       >
 
-      <div className="container">
-        <SearchbarDropdown size= "5"
-          className = "bookSearchbarDropdown"
-          options={options}
-          value = {bookInput}
-          onInputChange={onInputChange}
-        />
-        <br />
+        <div className="container">
+          <SearchbarDropdown size= "5"
+            className = "bookSearchbarDropdown"
+            options={options}
+            value = {bookInput}
+            onInputChange={onInputChange}
+          />
+          <br />
 
-      </div>
-
-
-      <Button
-        variant="contained"
-        disabled={!isValid}
-        onClick={handleChange}>
-          Generate Playlist
-      </Button>
+        </div>
 
 
-<div>
-<br />
-<br />
-<br />
-<br />
+        <Button
+          variant="contained"
+          disabled={!isValid}
+          onClick={handleChange}>
+            Generate Playlist
+        </Button>
 
-</div>
+        <div>
+          <br />
+          <br />
+          <br />
+          <br />
+        </div>
+
+        <Box
+          component="form"
+          sx={{
+            '& .CircularProgress-root': { m: 1, width: '200px', padding: '0.25rem' },
+            padding: '1rem'
+          }}
+          noValidate
+          autoComplete="off"
+          alignItems="center"
+          justifyContent="center"
+          id = "progress"
+          style={{display: 'none'}}
+        >
+          <CircularProgress />
+        </Box>
+        
+
         <iframe
-        // episode/7makk4oTQel546B0PZlDM5
-        // https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWWvHBEQLnV1N
           id="spotifyPlaylist" style={{display: 'none'}}
           src="https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp"
           width="650" height="380" frameBorder="0" allowtransparency="true">
         </iframe>
 
-
         <div>
-        <br />
-        <br />
+          <br />
+          <br />
         </div>
 
-<div id="addPref" style={{display: 'none', width: '20px'}}>
-      <h5
-      	className="text"
-      	>Don't like what you see? Type a genre you like:
-      </h5>
+        <div id="addPref" style={{display: 'none', width: '20px'}}>
+          <h5
+            className="text"
+            >Don't like what you see? Type a genre you like:
+          </h5>
 
+          <div className="container">
+            <SearchbarDropdown size= "2"
+              className = "bookSearchbarDropdown"
+              options={genreList}
+              value = {genreInput}
+              onInputChange={onGenreInputChange}
+            />
+          </div>
 
-<div className="container">
-      <SearchbarDropdown size= "2"
-        className = "bookSearchbarDropdown"
-        options={genreList}
-        value = {genreInput}
-        onInputChange={onGenreInputChange}
-      />
-      </div>
+          <Button
+              className="genre-button"
+              variant="contained"
+              disabled={!genreValid}
+              onClick={handleGenreChange}>
+                Search Genre
+          </Button>
+        </div>
 
-
-      <Button
-          className="genre-button"
-          variant="contained"
-          disabled={!genreValid}
-          onClick={handleGenreChange}>
-            Search Genre
-       </Button>
-
-
-
-
-</div>
-<div>
-<br />
-</div>
+        <div>
+          <br />
+        </div>
 
       </Box>
-
-
-
 
     </div>
   );
