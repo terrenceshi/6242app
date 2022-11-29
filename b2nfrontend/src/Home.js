@@ -1,13 +1,7 @@
 import './App.css';
 import * as React from 'react';
 
-import { Typography, TextField, Box, Button, Toolbar, AppBar, IconButton, Tabs, Tab, List, ListItem, Menu } from '@mui/material';
-import TabPanel from '@mui/lab/TabPanel';
-import TabList from '@mui/lab/TabList';
-import TabContext from '@mui/lab/TabContext';
-import styled from "@mui/styled-engine";
-import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
+import { TextField, Box, Button, Autocomplete } from '@mui/material';
 import { useState, useRef, useEffect} from 'react';
 import './bootstrap.min.css';
 import { csv } from 'd3-request';
@@ -124,10 +118,10 @@ function Home() {
     console.log(bookInput)
     var spotifyPlaylist = document.getElementById("spotifyPlaylist");
     var addPref = document.getElementById("addPref");
-    if (spotifyPlaylist.style.display == 'none') {
+    if (spotifyPlaylist.style.display === 'none') {
         spotifyPlaylist.style.display = 'inline';
       }
-    if (addPref.style.display == 'none') {
+    if (addPref.style.display === 'none') {
         addPref.style.display = 'inline';
     }
   };
@@ -157,11 +151,7 @@ function Home() {
     setBookInput(event.target.value.toLowerCase());
   };
 
-
-
-
   return (
-
 
     <div className="Home">
 
@@ -174,22 +164,32 @@ function Home() {
         autoComplete="off"
       >
 
-
-
-
-
       <div className="container">
-   <SearchbarDropdown size= "5" className = "bookSearchbarDropdown" options={options} value = {bookInput} onInputChange={onInputChange}/>
-   <br />
+        <SearchbarDropdown size= "5" 
+        className = "bookSearchbarDropdown"
+        options={options}
+        value = {bookInput}
+        onInputChange={onInputChange}/>
+        <br />
 
- </div>
+      </div>
 
- <Button
-   variant="contained"
-   disabled={!isValid}
-   onClick={handleChange}>
-     Generate Playlist
- </Button>
+      <Autocomplete
+        disablePortal
+        id="bookSearch"
+        className = "bookSearchbarDropdown"
+        options={options}
+        value = {bookInput}
+        onInputChange={onInputChange}
+        renderInput={(params) => <TextField {...params} label="Enter Book Title" />}
+      />
+
+      <Button
+        variant="contained"
+        disabled={!isValid}
+        onClick={handleChange}>
+          Generate Playlist
+      </Button>
 
 
 <div>
