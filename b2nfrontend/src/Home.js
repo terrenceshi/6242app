@@ -103,18 +103,11 @@ function Home() {
     axios.post('http://127.0.0.1:5000', axiosInput)
         .then(function(response){
             console.log(response);
-            playlists = response;
+            playlists = response['data'];
 
             var defaultKey = bookInput + " playlist - default"
 
-            console.log("FUCK CHIGGAS")
-
-            console.log(defaultKey)
-
             var defaultUrl = playlists[defaultKey]
-
-            console.log(playlists)
-            console.log(defaultUrl)
 
             //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
             //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
@@ -123,7 +116,7 @@ function Home() {
 
             var newUrl = "https://open.spotify.com/embed/user/spotify/playlist/" + split[split.length - 1];
 
-            console.log(newUrl)
+            document.getElementById("spotifyPlaylist").src = newUrl;
 
             if (spotifyPlaylist.style.display === 'none') {
                 spotifyPlaylist.style.display = 'inline';
