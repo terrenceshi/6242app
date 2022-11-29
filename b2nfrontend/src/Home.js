@@ -66,30 +66,37 @@ const book = [];
 csv(url, function(err, data) {
   for (let i = 0; i < data.length; i++) {
     book.push(data[i]["title"]);
-    // if (data[i]["author"] != "") {
-    //   book.push(data[i]["title"] + " by " + data[i]["author"]);
-    // } else {
-    //   book.push(data[i]["title"]);
-    // }
   }
 
-  //console.log(data);
 })
 
+
+var playlists = {};
+var genreList = []
+
 function Home() {
-  //const [value, setValue] = React.useState('Controlled');
 
   var song = ""
+  // var genreList = []
 
   const getSong = (event: React.ChangeEvent<HTMLInputElement>) => {
     song = event.target.value
   }
-  const handleSongChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGenreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
-    console.log(song)
+    console.log(genreInput)
+    var newKey = bookInput + " playlist - " + genreInput
+
+    var newUrl = playlists[newKey]
+    var split = newUrl.split('/');
+
+    newUrl = "https://open.spotify.com/embed/user/spotify/playlist/" + split[split.length - 1];
+    console.log(newUrl)
+
+    document.getElementById("spotifyPlaylist").src = newUrl;
   };
 
-  var playlists = {};
+  // var playlists = {};
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
@@ -112,6 +119,17 @@ function Home() {
             //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
             //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
 
+            console.log("HEREEEE")
+            var genre = ""
+            for (const [key, value] of Object.entries(playlists)) {
+              // console.log(key);
+              genre = key;
+              genre = genre.split("playlist");
+              genre = genre[1].split(" ")
+              console.log(genre[2])
+              genreList.push(genre[2])
+            }
+
             var split = defaultUrl.split('/');
 
             var newUrl = "https://open.spotify.com/embed/user/spotify/playlist/" + split[split.length - 1];
@@ -125,7 +143,7 @@ function Home() {
                 addPref.style.display = 'inline';
             }
 
-            
+
     })
     .catch(function(error){
         console.log(error);
@@ -133,6 +151,10 @@ function Home() {
     });
 
   };
+
+
+
+
 
   const [options, setOptions] = useState([]);
   const [bookInput, setBookInput] = useState("");
@@ -160,12 +182,49 @@ function Home() {
 
   };
 
+
+
+
+
+  const [genres, setGenreOptions] = useState([]);
+  const [genreInput, setGenreInput] = useState("");
+  const [genreValid, setGenreValid] = useState(false);
+
+  const validateGenre = () => {
+    const lower = genreList.map(element => {
+      return element.toLowerCase();
+    });
+    return lower.includes(genreInput);
+  };
+
+  useEffect(() => {
+    const genreValid = validateGenre();
+    setGenreValid(genreValid);
+  }, [genreInput]);
+
+  const onGenreInputChange = (event) => {
+
+    console.log("GENRE LISTSSS")
+    console.log(genreList)
+    console.log(playlists)
+    setGenreOptions(
+      genreList.filter((option) => option.toLowerCase().includes(event.target.value.toLowerCase()))
+    );
+    setGenreInput(event.target.value.toLowerCase());
+
+    console.log(genreInput)
+
+  };
+
+
+
   var title = ""
   const getTitle = (event, value) => {
     console.log(value)
   }
 
   return (
+
     <div className="Home">
 
       <Box
@@ -178,7 +237,7 @@ function Home() {
       >
 
       <div className="container">
-        <SearchbarDropdown size= "5" 
+        <SearchbarDropdown size= "5"
           className = "bookSearchbarDropdown"
           options={options}
           value = {bookInput}
@@ -188,17 +247,7 @@ function Home() {
 
       </div>
 
-      {/*
-        <Autocomplete
-          disablePortal
-          id="bookSearch"
-          className = "bookSearchbarDropdown"
-          options={book}
-          onChange={getTitle} // prints the selected value
-          renderInput={(params) => <TextField {...params} label="Enter Book Title" />}
-        />
-      */}
-      
+
       <Button
         variant="contained"
         disabled={!isValid}
@@ -226,32 +275,40 @@ function Home() {
         <div>
         <br />
         <br />
-        <br />
         </div>
 
-<div id="addPref" style={{display: 'none'}}>
+<div id="addPref" style={{display: 'none', width: '20px'}}>
       <h5
       	className="text"
-      	>Don't like what you see? Type a song that matches what you're looking for:
+      	>Don't like what you see? Type a genre you like:
       </h5>
 
-      <TextField
-          	className="song-field"
-            id="outlined-multiline-flexible"
-            label="Song Name"
-            multiline
-            maxRows={4}
-            onChange={getSong}
-          >
-      </TextField>
-      <Button
-          className="song-button"
-          variant="contained"
-          onClick={handleSongChange}>
-            Search
-       </Button>
-</div>
 
+<div className="container">
+      <SearchbarDropdown size= "2"
+        className = "bookSearchbarDropdown"
+        options={genreList}
+        value = {genreInput}
+        onInputChange={onGenreInputChange}
+      />
+      </div>
+
+
+      <Button
+          className="genre-button"
+          variant="contained"
+          disabled={!genreValid}
+          onClick={handleGenreChange}>
+            Search Genre
+       </Button>
+
+
+
+
+</div>
+<div>
+<br />
+</div>
 
       </Box>
 
