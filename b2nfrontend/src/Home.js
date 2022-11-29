@@ -15,8 +15,7 @@ import url from "./book_data_with_author.csv";
 import './Home.css';
 
 
-
-
+// <script src="jquery-3.6.1.min.js"></script>
 //each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
 const SearchbarDropdown = (props) => {
   const { options, onInputChange } = props;
@@ -72,11 +71,12 @@ const book = [];
 
 csv(url, function(err, data) {
   for (let i = 0; i < data.length; i++) {
-    if (data[i]["author"] != "") {
-      book.push(data[i]["title"] + " by " + data[i]["author"]);
-    } else {
-      book.push(data[i]["title"]);
-    }
+    book.push(data[i]["title"]);
+    // if (data[i]["author"] != "") {
+    //   book.push(data[i]["title"] + " by " + data[i]["author"]);
+    // } else {
+    //   book.push(data[i]["title"]);
+    // }
   }
 
  console.log(data);
@@ -84,7 +84,21 @@ csv(url, function(err, data) {
 
 
 
-
+// function postData(input) {
+//     $.ajax({
+//         type: "POST",
+//         url: "/reverse_pca.py",
+//         data: { param: input },
+//         success: callbackFunc
+//     });
+// }
+//
+// function callbackFunc(response) {
+//     // do something with the response
+//     console.log(response);
+// }
+//
+// postData('data to process');
 
 
 
@@ -93,9 +107,6 @@ csv(url, function(err, data) {
 
 function Home() {
   //const [value, setValue] = React.useState('Controlled');
-
-  var title = ""
-  var author = ""
 
   var song = ""
 
@@ -108,17 +119,17 @@ function Home() {
   };
 
 
-  const getTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //setValue(event.target.value);
-    title = event.target.value
-  }
-  const getAuthor = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //setValue(event.target.value);
-    author = event.target.value
-  }
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
     console.log(bookInput)
+    var spotifyPlaylist = document.getElementById("spotifyPlaylist");
+    var addPref = document.getElementById("addPref");
+    if (spotifyPlaylist.style.display == 'none') {
+        spotifyPlaylist.style.display = 'inline';
+      }
+    if (addPref.style.display == 'none') {
+        addPref.style.display = 'inline';
+    }
   };
 
 
@@ -133,6 +144,7 @@ function Home() {
     });
     return lower.includes(bookInput);
   };
+
   useEffect(() => {
     const isValid = validate();
     setValid(isValid);
@@ -190,20 +202,24 @@ function Home() {
         <iframe
         // episode/7makk4oTQel546B0PZlDM5
         // https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWWvHBEQLnV1N
+          id="spotifyPlaylist" style={{display: 'none'}}
           src="https://open.spotify.com/embed/user/spotify/playlist/37i9dQZF1DWWvHBEQLnV1N"
           width="650" height="380" frameBorder="0" allowtransparency="true">
         </iframe>
 
 
+        <div>
+        <br />
+        <br />
+        <br />
+        </div>
 
+<div id="addPref" style={{display: 'none'}}>
       <h5
       	className="text"
-      	>Don't like what you see? Type a song you like:
+      	>Don't like what you see? Type a song that matches what you're looking for:
       </h5>
-      <a
-        className="link">
-      	Click here
-      </a>
+
       <TextField
           	className="song-field"
             id="outlined-multiline-flexible"
@@ -219,6 +235,9 @@ function Home() {
           onClick={handleSongChange}>
             Search
        </Button>
+</div>
+
+
       </Box>
 
 
