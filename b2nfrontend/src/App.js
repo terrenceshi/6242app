@@ -14,8 +14,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 
 //each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
 
-
-
 function App() {
   //const [value, setValue] = React.useState('Controlled');
 
@@ -29,17 +27,17 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <div className="App">
-        <div class = "navbar" >
+        <div className = "navbar" >
           <Nav/>
         </div>
         
-        <div class = "titleCard">
+        <div className = "titleCard">
           <Typography variant="h1">
             From Books to Nooks
           </Typography>
         </div>
         
-        <div class = "content">
+        <div className = "content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
