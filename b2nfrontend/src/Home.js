@@ -187,6 +187,7 @@ function Home() {
           id = "generate"
           variant="contained"
           disabled = {disabledBtn}
+          sx = {{ m: 1 }}
           onClick={handleChange}>
             Generate Playlist
         </Button>
@@ -250,6 +251,7 @@ function Home() {
             className="genre-button"
             variant="contained"
             disabled = {disabledBtn2}
+            sx = {{ m: 1 }}
             onClick={handleGenreChange}>
               Search Genre
         </Button>

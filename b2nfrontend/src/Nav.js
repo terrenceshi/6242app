@@ -7,15 +7,12 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 import { Link } from "react-router-dom";
 
 const pages = ['Home', 'About','Issue'];
-const settings = ['About', 'About2'];
 
 const Nav = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,7 +37,10 @@ const Nav = () => {
 
     //add sx = {{ background: "#063970"}} to change navbar color
 
-    <AppBar position="static" >
+    <AppBar 
+      position="static" 
+      style = {{ background: 'linear-gradient(120deg, #224186, #582677)' }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
 
