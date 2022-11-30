@@ -90,13 +90,8 @@ function Home() {
 
             var defaultUrl = playlists[defaultKey]
 
-            //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
-            //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
-
-            //console.log("HEREEEE")
             var genre = ""
             for (const [key, value] of Object.entries(playlists)) {
-              // console.log(key);
               genre = key;
               genre = genre.split("playlist");
               genre = genre[1].split(" ")
