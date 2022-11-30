@@ -70,7 +70,6 @@ csv(url, function(err, data) {
 
 })
 
-
 var playlists = {};
 var genreList = []
 

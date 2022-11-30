@@ -19,8 +19,9 @@ function App() {
 
   return (
     <div className="App">
-      <Nav />
-
+      <div class = "navbar" >
+        <Nav/>
+      </div>
       
 
       <Typography variant="h1">
