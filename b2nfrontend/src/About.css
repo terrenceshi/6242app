@@ -1,5 +1,4 @@
 #wrapper {
-    width: 800px;
     overflow: hidden; /* will contain if #first is longer than #second */
 }
 #Tabs {

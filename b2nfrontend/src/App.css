@@ -12,7 +12,7 @@
 }
 
 .content {
-	margin-bottom: 6em;
+	margin-bottom: 8em;
 }
 
 .title {
@@ -40,4 +40,8 @@
 	position: fixed;
    	top: 0px;
 	width: 100%;
+}
+
+p {
+	font-size: 95%;
 }
