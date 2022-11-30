@@ -23,6 +23,24 @@ var playlists = {};
 var genreList = []
 
 function Home() {
+  //code to handle mobile resizing
+  const [isMobile, setIsMobile] = useState(1)
+ 
+  //choose the screen size 
+  const handleResize = () => {
+    if (window.innerWidth < 720) {
+        setIsMobile(350 / 900)
+
+    } else {
+        setIsMobile(1)
+    }
+  }
+
+  // create an event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
+  })
+
   //Code that handles input to first textfield.
   const [bookInput, setBookInput] = useState("");
   
@@ -55,6 +73,14 @@ function Home() {
     
   }
 
+  var wait = (ms) => {
+    const start = Date.now();
+    let now = start;
+    while (now - start < ms) {
+      now = Date.now();
+    }
+  }
+
   //Bulk of the code that talks to the backend in order to get our playlists.
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
@@ -82,21 +108,12 @@ function Home() {
             console.log(response);
             playlists = response['data'];
 
-            if (progress.style.display === 'inline') {
-              progress.style.display = 'none';
-            }
-
             var defaultKey = bookInput + " playlist - default"
 
             var defaultUrl = playlists[defaultKey]
 
-            //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
-            //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
-
-            //console.log("HEREEEE")
             var genre = ""
             for (const [key, value] of Object.entries(playlists)) {
-              // console.log(key);
               genre = key;
               genre = genre.split("playlist");
               genre = genre[1].split(" ")
@@ -109,6 +126,12 @@ function Home() {
             var newUrl = "https://open.spotify.com/embed/user/spotify/playlist/" + split[split.length - 1];
 
             document.getElementById("spotifyPlaylist").src = newUrl;
+
+            wait(500); //wait for a half a second since sometimes the spotify playlist takes a minute to swap
+
+            if (progress.style.display === 'inline') {
+              progress.style.display = 'none';
+            }
 
             if (spotifyPlaylist.style.display === 'none') {
                 spotifyPlaylist.style.display = 'inline';
@@ -177,7 +200,7 @@ function Home() {
           onInputChange={handleInputChange}
           options={book}
           getOptionLabel={(option) => option}
-          style={{ width: 500 }}
+          style={{ width: isMobile * 700 + 'px' }}
           renderInput={(params) => (
             <TextField {...params} label="Enter a book title" variant="outlined" />
           )}
@@ -212,7 +235,7 @@ function Home() {
         <iframe
           id="spotifyPlaylist" style={{display: 'none'}}
           src="https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp"
-          width="650" height="380" frameBorder="0" allowtransparency="true">
+          width = {isMobile * 700} height="380" frameBorder="0" allowtransparency="true">
         </iframe>
 
         <div>
@@ -241,7 +264,7 @@ function Home() {
           id="autocomplete2"
           options={genreList}
           onChange={autoGChange}
-          style={{ width: 500 }}
+          style={{ width: isMobile * 700 + 'px' }}
           renderInput={(params) => (
             <TextField {...params} label="Enter your favorite genre" variant="outlined" />
           )}

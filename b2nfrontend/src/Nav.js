@@ -39,7 +39,7 @@ const Nav = () => {
 
     <AppBar 
       position="static" 
-      style = {{ background: 'linear-gradient(120deg, #224186, #582677)' }}
+      style = {{ background: 'linear-gradient(120deg, #3961bb, #9a3dbc)' }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
