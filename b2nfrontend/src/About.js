@@ -75,77 +75,47 @@ const readMoreClick = (event: React.ChangeEvent<HTMLInputElement>) => {
 
 
 function About() {
-
-
-
-
-
   return (
+    <div className="About">
+      <div id="wrapper">
+        <div>
+          <p > 
+            &emsp;&emsp;Many web services rely on recommender systems to
+            help users discover personalized content from their
+            ever-increasing large databases. Great performance can be achieved through simple tech-
+            niques such as matrix factorization (MF) of user-item
+            matrices. MF belongs to a class of algorithms known
+            as collaborative filtering and leverages preference data
+            from a large collection of users to inform the sugges-
+            tions provided to any specific individual. While these
+            techniques have been applied successfully to recom-
+            mend personalized content in a single domain, recom-
+            mending content across domains is less explored. As
+            a result, we are interested in designing a collaborative
+            filtering system to recommend cross-domain content.
+            In particular, we designed an automated music playlist
+            recommendation system for books based on their descrip-
+            tions. In doing so, we hope to create a unique, immersive
+            reading experience.
+          </p>
+        </div>
 
-<body>
+        <div>
+            <p>
+              &emsp;&emsp;We connect book and song domains by using modern
+              advances in NLP. Siamese provided an efficient method for
+              computing sentence similarity embeddings
+              transformer models. We train our model using recent advances in fast
+              MF algorithms. Finally, we apply weighted regularization
+              to encourage small norms in the latent factors so that
+              the learned factorization will be stable. 
+            </p>
+        </div>
+        
+      </div>
 
-
-  <div id="wrapper">
-        <TabContext id="Tabs" >
-        <Tabs centered orientation="vertical">
-  <Tab label="Purpose" onClick={purposeClick} />
-  <Tab label="Process"  onClick={processClick} />
-  <Tab label="Read More" onClick={readMoreClick} />
-  </Tabs>
-
-        </TabContext>
-
-
-
-<div id="purposeStatement" style={{display: 'none'}}>
-    <p > Many web services rely on recommender systems to
-help users discover personalized content from their
-ever-increasing large databases. Great performance can be achieved through simple tech-
-niques such as matrix factorization (MF) of user-item
-matrices. MF belongs to a class of algorithms known
-as collaborative filtering and leverages preference data
-from a large collection of users to inform the sugges-
-tions provided to any specific individual. While these
-techniques have been applied successfully to recom-
-mend personalized content in a single domain, recom-
-mending content across domains is less explored. As
-a result, we are interested in designing a collaborative
-filtering system to recommend cross-domain content.
-In particular, we designed an automated music playlist
-recommendation system for books based on their descrip-
-tions. In doing so, we hope to create a unique, immersive
-reading experience.
-</p>
-</div>
-
-<div id="processStatement" style={{display: 'none'}}>
-    <p>We connect book and song domains by using modern
-advances in NLP. Siamese provided an efficient method for
-computing sentence similarity embeddings
-transformer models. We train our model using recent advances in fast
-MF algorithms. Finally, we apply weighted regularization
-to encourage small norms in the latent factors so that
-the learned factorization will be stable. </p>
-</div>
-
-<div>
- <object id="readMore" width="700" height="500" type="application/pdf" data='https://pdfjs-express.s3-us-west-2.amazonaws.com/docs/choosing-a-pdf-viewer.pdf'>
-
-
-
- <iframe src='https://pdfjs-express.s3-us-west-2.amazonaws.com/docs/choosing-a-pdf-viewer.pdf'></iframe>
- </object>
- </div>
-
-
-</div>
-
- </body>
-
-
+    </div>
   );
 }
-
-
 
 export default About;

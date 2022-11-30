@@ -6,13 +6,15 @@ HERE IS WHAT YOU NEED TO SET THIS UP:
 -put data and model folders into flask-server
 
 -create a virtual environment
+	-make sure you are cd'd into flask server
+
 	python -m venv venv
 		-you can replace the last venv with any name you like
 
 	activate your environment (assuming the name is venv)
 		-source venv/bin/activate for mac
 
-		-venv/scripts/activate
+		-venv\scripts\activate
 
 -download everything you need while in the activated virutal environment
 	-pip install -r requirements.txt

@@ -2,13 +2,13 @@
   width: 30px;
 }
 
-.authorSearchbarDropdown {
-  width: 30px;
+.genreSearchbarDropdown {
+  width: 20px;
 }
 
 .container {
   width:500px;
-overflow:scroll;
-padding:20px;
-height: 150px;
+  overflow:scroll;
+  padding:20px;
+  height: 150px;
 }
