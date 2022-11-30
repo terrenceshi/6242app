@@ -113,6 +113,9 @@ function Home() {
             var defaultUrl = playlists[defaultKey]
 
             var genre = ""
+            if(genreList.length != 0) {
+              genreList = [];
+            }
             for (const [key, value] of Object.entries(playlists)) {
               genre = key;
               genre = genre.split("playlist");
