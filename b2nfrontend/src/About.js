@@ -80,7 +80,7 @@ function About() {
       <div id="wrapper">
         <div>
           <p > 
-              Many web services rely on recommender systems to
+            &emsp;&emsp;Many web services rely on recommender systems to
             help users discover personalized content from their
             ever-increasing large databases. Great performance can be achieved through simple tech-
             niques such as matrix factorization (MF) of user-item
@@ -102,7 +102,7 @@ function About() {
 
         <div>
             <p>
-                We connect book and song domains by using modern
+              &emsp;&emsp;We connect book and song domains by using modern
               advances in NLP. Siamese provided an efficient method for
               computing sentence similarity embeddings
               transformer models. We train our model using recent advances in fast
