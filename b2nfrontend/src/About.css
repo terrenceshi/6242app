@@ -1,5 +1,5 @@
 #wrapper {
-    width: 1500px;
+    width: 800px;
     overflow: hidden; /* will contain if #first is longer than #second */
 }
 #Tabs {
@@ -7,8 +7,6 @@
     float:left; /* add this */
     display: inline;
 }
-
-
 
 #purposeStatement {
     position: absolute;

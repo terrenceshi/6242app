@@ -23,17 +23,20 @@ function App() {
         <Nav/>
       </div>
       
-
-      <Typography variant="h1">
-        From Books to Nooks
-      </Typography>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Home" element={<Home />} />
-        <Route path="/Issue" element={<Issue />} />
-        <Route path="/About" element={<About />} />
-      </Routes>
+      <div class = "titleCard">
+        <Typography variant="h1">
+          From Books to Nooks
+        </Typography>
+      </div>
+      
+      <div class = "content">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Issue" element={<Issue />} />
+          <Route path="/About" element={<About />} />
+        </Routes>
+      </div>
 
     </div>
 

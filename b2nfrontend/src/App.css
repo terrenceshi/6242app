@@ -7,6 +7,14 @@
   font-size: calc(10px + 2vmin);
 }
 
+.titleCard {
+	margin: 1em;
+}
+
+.content {
+	margin-bottom: 6em;
+}
+
 .title {
 	color: #000000;
 }

@@ -222,7 +222,6 @@ function Home() {
   }
 
   return (
-
     <div className="Home">
 
       <Box
@@ -244,7 +243,6 @@ function Home() {
           <br />
 
         </div>
-
 
         <Button
           variant="contained"
