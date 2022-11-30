@@ -1,7 +1,7 @@
 import './App.css';
 import * as React from 'react';
 
-import { TextField, Box, Button, Autocomplete, CircularProgress } from '@mui/material';
+import { TextField, Box, Button, Autocomplete, CircularProgress, Grid } from '@mui/material';
 import { useState, useRef, useEffect} from 'react';
 import './bootstrap.min.css';
 import { csv } from 'd3-request';
@@ -105,6 +105,13 @@ function Home() {
     var axiosInput = {};
     axiosInput[bookInput] = 1
 
+    if (spotifyPlaylist.style.display === 'inline') {
+      spotifyPlaylist.style.display = 'none';
+    }
+    if (addPref.style.display === 'flex') {
+      addPref.style.display = 'none';
+    }
+
     if (progress.style.display === 'none') {
       progress.style.display = 'inline';
     }
@@ -141,7 +148,7 @@ function Home() {
                 spotifyPlaylist.style.display = 'inline';
               }
             if (addPref.style.display === 'none') {
-                addPref.style.display = 'inline';
+                addPref.style.display = 'flex';
             }
 
 
@@ -197,9 +204,9 @@ function Home() {
 
   const onGenreInputChange = (event) => {
 
-    console.log("GENRE LISTSSS")
-    console.log(genreList)
-    console.log(playlists)
+    //console.log("GENRE LISTSSS")
+    //console.log(genreList)
+    //console.log(playlists)
     setGenreOptions(
       genreList.filter((option) => option.toLowerCase().includes(event.target.value.toLowerCase()))
     );
@@ -214,16 +221,20 @@ function Home() {
     console.log(value)
   }
 
+  var inputValue = ""
+
   return (
     <div className="Home">
 
-      <Box
+      <Grid
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          '& .MuiTextField-root': { m: 1},
         }}
         noValidate
         autoComplete="off"
+        container direction = "column"
+        alignItems="center"
       >
 
         <div className="container">
@@ -237,6 +248,18 @@ function Home() {
 
         </div>
 
+        <Autocomplete
+          onInputChange={getTitle}
+          id="autocomplete"
+          options={book}
+          getOptionLabel={(option) => option}
+          style={{ width: 500 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Enter a book title" variant="outlined" />
+          )}
+          open={title.length > 2}
+        />
+
         <Button
           variant="contained"
           disabled={!isValid}
@@ -247,27 +270,20 @@ function Home() {
         <div>
           <br />
           <br />
-          <br />
-          <br />
         </div>
 
         <Box
           component="form"
-          sx={{
-            '& .CircularProgress-root': { m: 1, width: '200px', padding: '0.25rem' },
-            padding: '1rem'
-          }}
-          noValidate
-          autoComplete="off"
-          alignItems="center"
-          justifyContent="center"
           id = "progress"
           style={{display: 'none'}}
         >
-          <CircularProgress />
+          <CircularProgress 
+            size={200}
+            thickness={3}
+            value={100}
+          />
         </Box>
         
-
         <iframe
           id="spotifyPlaylist" style={{display: 'none'}}
           src="https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp"
@@ -279,35 +295,55 @@ function Home() {
           <br />
         </div>
 
-        <div id="addPref" style={{display: 'none', width: '20px'}}>
-          <h5
-            className="text"
-            >Don't like what you see? Type a genre you like:
-          </h5>
+      </Grid>
 
-          <div className="container">
-            <SearchbarDropdown size= "2"
-              className = "bookSearchbarDropdown"
-              options={genreList}
-              value = {genreInput}
-              onInputChange={onGenreInputChange}
-            />
-          </div>
+      <Grid 
+        container direction = "column"
+        component="form"
+        alignItems="center"
+        justifyContent="center"
+        id="addPref"
+        style={{display: 'none'}}
+      >
+        <h5
+          >Don't like what you see?
+        </h5>
 
-          <Button
-              className="genre-button"
-              variant="contained"
-              disabled={!genreValid}
-              onClick={handleGenreChange}>
-                Search Genre
-          </Button>
+        <div className="container">
+          <SearchbarDropdown size= "2"
+            className = "bookSearchbarDropdown"
+            options={genreList}
+            value = {genreInput}
+            onInputChange={onGenreInputChange}
+          />
         </div>
+
+        <Autocomplete
+          onInputChange={getTitle}
+          id="autocomplete"
+          options={book}
+          getOptionLabel={(option) => option}
+          style={{ width: 500 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Enter a genre you like" variant="outlined" />
+          )}
+          open={title.length > 2}
+        />
+
+        <Button
+            className="genre-button"
+            variant="contained"
+            disabled={!genreValid}
+            onClick={handleGenreChange}>
+              Search Genre
+        </Button>
+      </Grid>
 
         <div>
           <br />
         </div>
 
-      </Box>
+      
 
     </div>
   );
