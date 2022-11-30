@@ -110,7 +110,7 @@ function Home() {
     if (spotifyPlaylist.style.display === 'inline') {
       spotifyPlaylist.style.display = 'none';
     }
-    if (addPref.style.display === 'inline') {
+    if (addPref.style.display === 'flex') {
       addPref.style.display = 'none';
     }
 
@@ -155,7 +155,7 @@ function Home() {
                 spotifyPlaylist.style.display = 'inline';
               }
             if (addPref.style.display === 'none') {
-                addPref.style.display = 'inline';
+                addPref.style.display = 'flex';
             }
 
 
@@ -291,7 +291,6 @@ function Home() {
           />
         </Box>
         
-
         <iframe
           id="spotifyPlaylist" style={{display: 'none'}}
           src="https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp"
@@ -303,35 +302,55 @@ function Home() {
           <br />
         </div>
 
-        <div id="addPref" style={{display: 'none', width: '20px'}}>
-          <h5
-            className="text"
-            >Don't like what you see? Type a genre you like:
-          </h5>
+      </Grid>
 
-          <div className="container">
-            <SearchbarDropdown size= "2"
-              className = "bookSearchbarDropdown"
-              options={genreList}
-              value = {genreInput}
-              onInputChange={onGenreInputChange}
-            />
-          </div>
+      <Grid 
+        container direction = "column"
+        component="form"
+        alignItems="center"
+        justifyContent="center"
+        id="addPref"
+        style={{display: 'none'}}
+      >
+        <h5
+          >Don't like what you see?
+        </h5>
 
-          <Button
-              className="genre-button"
-              variant="contained"
-              disabled={!genreValid}
-              onClick={handleGenreChange}>
-                Search Genre
-          </Button>
+        <div className="container">
+          <SearchbarDropdown size= "2"
+            className = "bookSearchbarDropdown"
+            options={genreList}
+            value = {genreInput}
+            onInputChange={onGenreInputChange}
+          />
         </div>
+
+        <Autocomplete
+          onInputChange={getTitle}
+          id="autocomplete"
+          options={book}
+          getOptionLabel={(option) => option}
+          style={{ width: 500 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Enter a genre you like" variant="outlined" />
+          )}
+          open={title.length > 2}
+        />
+
+        <Button
+            className="genre-button"
+            variant="contained"
+            disabled={!genreValid}
+            onClick={handleGenreChange}>
+              Search Genre
+        </Button>
+      </Grid>
 
         <div>
           <br />
         </div>
 
-      </Grid>
+      
 
     </div>
   );
