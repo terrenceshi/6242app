@@ -130,7 +130,7 @@ def getPlaylists():
 
     # compute all music scores for a given book
     try:
-        query_ix = books_ix.index[books_ix[0].map(lambda x: x.lower()) == query].values[0]
+        query_ix = books_ix.index[books_ix[0].map(lambda x: x.lower()) == query.lower()].values[0]
         song_scores = (W[query_ix] @ H.T)
         top_song_ix = np.argsort(song_scores.detach().numpy())[::-1][:top_n]
 

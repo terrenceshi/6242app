@@ -10,93 +10,52 @@ import './Home.css';
 
 import axios, {isCancel, AxiosError} from 'axios';
 
-
-  // <script src="jquery-3.6.1.min.js"></script>
-  //each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
-  const SearchbarDropdown = (props) => {
-  const { options, onInputChange } = props;
-  const ulRef = useRef();
-  const inputRef = useRef();
-
-  const [bookData, setBookData] = useState([{}])
-
-  useEffect(() => {
-    inputRef.current.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ulRef.current.style.display = 'flex';
-      onInputChange(event);
-    });
-    document.addEventListener('click', (event) => {
-      ulRef.current.style.display = 'none';
-    });
-  }, []);
-
-  return (
-    <div className="search-bar-dropdown">
-      <input
-        id="search-bar"
-        type="text"
-        className="form-control"
-        placeholder="Search"
-        ref={inputRef}
-        onChange={onInputChange}
-      />
-      <ul id="results" className="list-group" ref={ulRef}>
-        {options.map((option, index) => {
-          return (
-            <button
-              type="button"
-              key={index}
-              onClick={(e) => {
-                inputRef.current.value = option;
-              }}
-              className="list-group-item list-group-item-action"
-            >
-              {option}
-            </button>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
-
 const book = [];
 
 csv(url, function(err, data) {
   for (let i = 0; i < data.length; i++) {
     book.push(data[i]["title"]);
   }
-
+  //console.log(book.includes("The Hunger Games"))
 })
 
 var playlists = {};
 var genreList = []
 
 function Home() {
+  //Code that handles input to first textfield.
+  const [bookInput, setBookInput] = useState("");
+  
+  const [disabledBtn, setDBtn] = React.useState(true);
+  
+  const [inputValue, setInputValue] = React.useState("");
+  const [open, setOpen] = React.useState(false);
 
-  var song = ""
-  // var genreList = []
-
-  const getSong = (event: React.ChangeEvent<HTMLInputElement>) => {
-    song = event.target.value
-  }
-  const handleGenreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //setValue(event.target.value);
-    console.log(genreInput)
-    var newKey = bookInput + " playlist - " + genreInput
-
-    var newUrl = playlists[newKey]
-    var split = newUrl.split('/');
-
-    newUrl = "https://open.spotify.com/embed/user/spotify/playlist/" + split[split.length - 1];
-    console.log(newUrl)
-
-    document.getElementById("spotifyPlaylist").src = newUrl;
+  const handleOpen = () => {
+    if (inputValue.length > 0) {
+      setOpen(true);
+    }
   };
+  const handleInputChange = (event, newInputValue) => {
+    setInputValue(newInputValue);
+    if (newInputValue.length > 2) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  };
+  const autoChange = (event, value) => {
+    setBookInput(value)
 
-  // var playlists = {};
+    setDBtn(false)
 
+    if(value == null) {
+      setDBtn(true)
+    }
+    
+  }
+
+  //Bulk of the code that talks to the backend in order to get our playlists.
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     //setValue(event.target.value);
     console.log(bookInput)
@@ -167,68 +126,32 @@ function Home() {
 
   };
 
-  const [options, setOptions] = useState([]);
-  const [bookInput, setBookInput] = useState("");
-  const [isValid, setValid] = useState(false);
-
-  const validate = () => {
-    const lower = book.map(element => {
-      return element.toLowerCase();
-    });
-    return lower.includes(bookInput);
-  };
-
-  useEffect(() => {
-    const isValid = validate();
-    setValid(isValid);
-  }, [bookInput]);
-
-  const onInputChange = (event) => {
-    setOptions(
-      book.filter((option) => option.toLowerCase().includes(event.target.value.toLowerCase()))
-    );
-    setBookInput(event.target.value.toLowerCase());
-
-    console.log(bookInput)
-
-  };
-
-  const [genres, setGenreOptions] = useState([]);
+  //Code for genre change
   const [genreInput, setGenreInput] = useState("");
-  const [genreValid, setGenreValid] = useState(false);
+  const [disabledBtn2, setDBtn2] = React.useState(true);
 
-  const validateGenre = () => {
-    const lower = genreList.map(element => {
-      return element.toLowerCase();
-    });
-    return lower.includes(genreInput);
-  };
-
-  useEffect(() => {
-    const genreValid = validateGenre();
-    setGenreValid(genreValid);
-  }, [genreInput]);
-
-  const onGenreInputChange = (event) => {
-
-    //console.log("GENRE LISTSSS")
-    //console.log(genreList)
-    //console.log(playlists)
-    setGenreOptions(
-      genreList.filter((option) => option.toLowerCase().includes(event.target.value.toLowerCase()))
-    );
-    setGenreInput(event.target.value.toLowerCase());
-
+  const handleGenreChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(genreInput)
+    var newKey = bookInput + " playlist - " + genreInput
 
+    var newUrl = playlists[newKey]
+    var split = newUrl.split('/');
+
+    newUrl = "https://open.spotify.com/embed/user/spotify/playlist/" + split[split.length - 1];
+    console.log(newUrl)
+
+    document.getElementById("spotifyPlaylist").src = newUrl;
   };
 
-  var title = ""
-  const getTitle = (event, value) => {
-    console.log(value)
-  }
+  const autoGChange = (event, value) => {
+    setGenreInput(value)
+    setDBtn2(false)
 
-  var inputValue = ""
+    if(value == null) {
+      setDBtn2(true)
+    }
+    
+  }
 
   return (
     <div className="Home">
@@ -236,7 +159,7 @@ function Home() {
       <Grid
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1},
+          '& .MuiTextField-root': { m: 2},
         }}
         noValidate
         autoComplete="off"
@@ -244,32 +167,26 @@ function Home() {
         alignItems="center"
       >
 
-        <div className="container">
-          <SearchbarDropdown size= "5"
-            className = "bookSearchbarDropdown"
-            options={options}
-            value = {bookInput}
-            onInputChange={onInputChange}
-          />
-          <br />
-
-        </div>
-
         <Autocomplete
-          onInputChange={getTitle}
           id="autocomplete"
+          open={open}
+          onOpen={handleOpen}
+          onClose={() => setOpen(false)}
+          onChange={autoChange}
+          inputValue={inputValue}
+          onInputChange={handleInputChange}
           options={book}
           getOptionLabel={(option) => option}
           style={{ width: 500 }}
           renderInput={(params) => (
             <TextField {...params} label="Enter a book title" variant="outlined" />
           )}
-          open={title.length > 2}
         />
 
         <Button
+          id = "generate"
           variant="contained"
-          disabled={!isValid}
+          disabled = {disabledBtn}
           onClick={handleChange}>
             Generate Playlist
         </Button>
@@ -306,6 +223,9 @@ function Home() {
 
       <Grid 
         container direction = "column"
+        sx={{
+          '& .MuiTextField-root': { m: 2},
+        }}
         component="form"
         alignItems="center"
         justifyContent="center"
@@ -316,31 +236,20 @@ function Home() {
           >Don't like what you see?
         </h5>
 
-        <div className="container">
-          <SearchbarDropdown size= "2"
-            className = "bookSearchbarDropdown"
-            options={genreList}
-            value = {genreInput}
-            onInputChange={onGenreInputChange}
-          />
-        </div>
-
         <Autocomplete
-          onInputChange={getTitle}
-          id="autocomplete"
-          options={book}
-          getOptionLabel={(option) => option}
+          id="autocomplete2"
+          options={genreList}
+          onChange={autoGChange}
           style={{ width: 500 }}
           renderInput={(params) => (
-            <TextField {...params} label="Enter a genre you like" variant="outlined" />
+            <TextField {...params} label="Enter your favorite genre" variant="outlined" />
           )}
-          open={title.length > 2}
         />
 
         <Button
             className="genre-button"
             variant="contained"
-            disabled={!genreValid}
+            disabled = {disabledBtn2}
             onClick={handleGenreChange}>
               Search Genre
         </Button>
@@ -349,8 +258,6 @@ function Home() {
         <div>
           <br />
         </div>
-
-      
 
     </div>
   );
