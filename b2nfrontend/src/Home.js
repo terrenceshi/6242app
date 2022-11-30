@@ -224,7 +224,6 @@ function Home() {
         </div>
 
         <Box
-          component="form"
           id = "progress"
           style={{display: 'none'}}
         >
