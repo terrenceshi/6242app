@@ -11,8 +11,6 @@ import './Home.css';
 import axios, {isCancel, AxiosError} from 'axios';
 
 
-  // <script src="jquery-3.6.1.min.js"></script>
-  //each textfield has attributes value and defaultvalue which can be used if we want our page to open with an example
   const SearchbarDropdown = (props) => {
   const { options, onInputChange } = props;
   const ulRef = useRef();
@@ -124,13 +122,8 @@ function Home() {
 
             var defaultUrl = playlists[defaultKey]
 
-            //https://open.spotify.com/playlist/24Ffs2F3fk9JmjDikhfrRk
-            //https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp
-
-            //console.log("HEREEEE")
             var genre = ""
             for (const [key, value] of Object.entries(playlists)) {
-              // console.log(key);
               genre = key;
               genre = genre.split("playlist");
               genre = genre[1].split(" ")
