@@ -1,1 +1,1 @@
-web: gunicorn app: flask-server/playlist
+web: gunicorn app: playlist

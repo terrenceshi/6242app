@@ -9,6 +9,10 @@ from spotipy.oauth2 import SpotifyOAuth
 from flask import Flask, request, render_template
 from flask_cors import CORS, cross_origin
 
+import boto3
+from smart_open import open as smart_open
+import io
+
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -107,12 +111,19 @@ def getPlaylists():
             #print('playlist exists already, here is link:')
             return links
 
-    music_ix_fname = "data/music_ix.csv"
-    books_ix_fname = "data/books_ix.csv"
-    musicfname = "data/combinedMusicData_small.csv"
+    client = boto3.client(
+        's3',
+        aws_access_key_id= "AKIAQVYK7Y7U46UDIBMP",
+        aws_secret_access_key= "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",
+        region_name = "us-east-1"
+    )
 
-    wfile = "model/W_rank100.pt"
-    hfile = "model/H_rank100.pt"
+    music_ix_fname = client.get_object(Bucket = "b2n-heroku-bucket", Key = "data/books_ix.csv")['Body']
+    books_ix_fname = client.get_object(Bucket = "b2n-heroku-bucket", Key = "data/books_ix.csv")['Body']
+    musicfname = client.get_object(Bucket = "b2n-heroku-bucket", Key = "data/combinedMusicData_small.csv")['Body']
+
+    wfile = client.get_object(Bucket = "b2n-heroku-bucket", Key = "model/W_rank100.pt")['Body']
+    hfile = client.get_object(Bucket = "b2n-heroku-bucket", Key = "model/H_rank100.pt")['Body']
     playlist_size = 15
     top_n = 1000
 
@@ -120,8 +131,14 @@ def getPlaylists():
     query = list(query.keys())[0]
 
     # load model
-    H = torch.load(hfile,map_location=torch.device('cpu'))
-    W = torch.load(wfile,map_location=torch.device('cpu'))
+
+    with smart_open(hfile, 'rb') as f:
+        buffer = io.BytesIO(f.read())
+        H = torch.load(buffer,map_location=torch.device('cpu'))
+
+    with smart_open(wfile, 'rb') as f:
+        buffer = io.BytesIO(f.read())
+        W = torch.load(buffer,map_location=torch.device('cpu'))
 
 
     # load book/music indices
@@ -129,61 +146,61 @@ def getPlaylists():
     books_ix = pd.read_csv(books_ix_fname, header=None)
 
     # compute all music scores for a given book
-    try:
-        query_ix = books_ix.index[books_ix[0].map(lambda x: x.lower()) == query.lower()].values[0]
-        song_scores = (W[query_ix] @ H.T)
-        top_song_ix = np.argsort(song_scores.detach().numpy())[::-1][:top_n]
+    #try:
+    query_ix = books_ix.index[books_ix[0].map(lambda x: x.lower()) == query.lower()].values[0]
+    song_scores = (W[query_ix] @ H.T)
+    top_song_ix = np.argsort(song_scores.detach().numpy())[::-1][:top_n]
 
-        music_df = pd.read_csv(musicfname, skiprows = lambda x: x not in np.sort(top_song_ix)+1, header=None)
-        # music_df.columns = ['title','tag','artist','year','views','features','lyrics','id','lang','uri']
-        music_df.columns = ["title", 'tag', 'artist', 'year', 'views', 'uri']
-        music_df['score'] = song_scores.detach().numpy()[np.sort(top_song_ix)]
+    music_df = pd.read_csv(musicfname, skiprows = lambda x: x not in np.sort(top_song_ix)+1, header=None)
+    # music_df.columns = ['title','tag','artist','year','views','features','lyrics','id','lang','uri']
+    music_df.columns = ["title", 'tag', 'artist', 'year', 'views', 'uri']
+    music_df['score'] = song_scores.detach().numpy()[np.sort(top_song_ix)]
 
-        #print("found genres")
-        #print(music_df['tag'].value_counts().index.values)
+    #print("found genres")
+    #print(music_df['tag'].value_counts().index.values)
 
-        inputDict = {}
+    inputDict = {}
 
-        first = True
-        concatDf = 0
+    first = True
+    concatDf = 0
 
-        for genre in music_df['tag'].value_counts().index.values:
-            if genre != 'misc': # avoid misc category, they are not songs.
-                #print(genre)
-                playlist_df = music_df[music_df['tag'] == genre].sort_values('score',ascending=False)[:playlist_size]
-                #print(playlist_df)
-                #print()
+    for genre in music_df['tag'].value_counts().index.values:
+        if genre != 'misc': # avoid misc category, they are not songs.
+            #print(genre)
+            playlist_df = music_df[music_df['tag'] == genre].sort_values('score',ascending=False)[:playlist_size]
+            #print(playlist_df)
+            #print()
 
-                playlistName = query + ' playlist - ' + genre
+            playlistName = query + ' playlist - ' + genre
 
-                inputDict[playlistName] = playlist_df['uri'].tolist()
+            inputDict[playlistName] = playlist_df['uri'].tolist()
 
-                if first:
-                    concatDf = playlist_df
-                    first = False
-                else:
-                    concatDf = pd.concat([concatDf, playlist_df])
+            if first:
+                concatDf = playlist_df
+                first = False
+            else:
+                concatDf = pd.concat([concatDf, playlist_df])
 
-        concatDf = concatDf.sort_values(by=['score'], ascending=False)
-        concatDf = concatDf.head(playlist_size)
+    concatDf = concatDf.sort_values(by=['score'], ascending=False)
+    concatDf = concatDf.head(playlist_size)
 
-        #print('default')
-        #print(concatDf)
-        #print()
-        #print('Creating playlists on spotify now...')
+    #print('default')
+    #print(concatDf)
+    #print()
+    #print('Creating playlists on spotify now...')
 
-        defaultName = query + ' playlist - default'
+    defaultName = query + ' playlist - default'
 
-        inputDict[defaultName] = concatDf['uri'].tolist()
+    inputDict[defaultName] = concatDf['uri'].tolist()
 
-        output = getLinks(query, inputDict)
+    output = getLinks(query, inputDict)
 
-        return output
+    return output
 
-    except:
+    #except:
         #print(f"Book query '{query}' did not match to existing book")
 
-        return {}
+    return {}
         
 if __name__ == "__main__":
     app.run(debug=True)
