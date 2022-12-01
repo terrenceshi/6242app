@@ -3,6 +3,7 @@ import sys
 import torch 
 from nmf_edited_from_soruce import NMF
 import pandas as pd
+import csv
 
 import wandb
 
@@ -68,6 +69,11 @@ def main():
     #plt.legend()
     figname=f'Data/Results/Loss for rank {rank_}'
     plt.savefig(figname)
+
+    #Save losses 
+    with open('losses','a') as f: 
+        write=csv.writer(f)
+        write.writerow(loss)
 
     #wandb.agent(sweep_id, function=main, count=4)
 
