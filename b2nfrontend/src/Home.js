@@ -103,7 +103,7 @@ function Home() {
       progress.style.display = 'inline';
     }
 
-    axios.post('http://127.0.0.1:5000', axiosInput)
+    axios.post('https://b2n-backend2.herokuapp.com', axiosInput)
         .then(function(response){
             console.log(response);
             playlists = response['data'];

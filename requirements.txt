@@ -1,8 +1,9 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
 Flask
 Flask-Cors==3.0.10
 numpy
 pandas
 spotipy==2.21.0
-torch==1.12.1
 gunicorn==20.1.0
 smart_open
+torch==1.11.0+cpu
