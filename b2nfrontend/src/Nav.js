@@ -94,7 +94,7 @@ const Nav = () => {
 
                 // font color
               >
-                <Link style = {{textDecoration: "none", color: "white"}} to = {`/6242app/${page}`}>
+                <Link style = {{textDecoration: "none", color: "white"}} to = {`/${page}`}>
                   {page}
                 </Link>
 
