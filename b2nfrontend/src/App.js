@@ -39,11 +39,10 @@ function App() {
         
         <div className = "content">
           <Routes>
-            <Route path="" element={<Home />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/Home" element={<Home />} />
-            <Route path="/Feedback" element={<Issue />} />
-            <Route path="/About" element={<About />} />
+            <Route path="/6242app" element={<Home />} />
+            <Route path="/6242app/Home" element={<Home />} />
+            <Route path="/6242app/Feedback" element={<Issue />} />
+            <Route path="/6242app/About" element={<About />} />
           </Routes>
         </div>
 
