@@ -17,6 +17,14 @@ app = Flask(__name__)
 cors = CORS(app)
 #app.config['CORS_HEADERS'] = 'Content-Type'
 
+@app.route("/")
+def test():
+    return {"hi": ["hello"]}
+
+@app.route("/test")
+def test2():
+    return {"hi2": ["hello2"]}
+
 @app.route("/", methods = ["POST"])
 @cross_origin()
 def getPlaylists():
