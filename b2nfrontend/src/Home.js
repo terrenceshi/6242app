@@ -105,8 +105,9 @@ function Home() {
 
     //https://b2n-backend2.herokuapp.com/
     //http://127.0.0.1:5000
+    //http://3.140.47.122
 
-    axios.post('https://b2n-backend2.herokuapp.com', axiosInput)
+    axios.post('http://3.140.47.122', axiosInput)
         .then(function(response){
             console.log(response);
             playlists = response['data'];
