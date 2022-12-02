@@ -135,6 +135,10 @@ def getPlaylists():
     playlist_size = 15
     top_n = 1000
 
+    print('DEBUG-------------------------------------')
+    print(type(hfile))
+    print('------------------------------------------')
+
     #request.headers.add("Access-Control-Allow-Origin", "*")
 
     query = request.json
