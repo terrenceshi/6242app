@@ -2,13 +2,13 @@ import './App.css';
 import * as React from 'react';
 
 import { TextField, Box, Button, Autocomplete, CircularProgress, Grid } from '@mui/material';
-import { useState, useRef, useEffect} from 'react';
+import { useState, useEffect} from 'react';
 import './bootstrap.min.css';
 import { csv } from 'd3-request';
 import url from "./book_data_with_author.csv";
 import './Home.css';
 
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
 
 const book = [];
 
@@ -119,7 +119,7 @@ function Home() {
             var defaultUrl = playlists[defaultKey]
 
             var genre = ""
-            if(genreList.length != 0) {
+            if(genreList.length !== 0) {
               genreList = [];
             }
             for (const [key, value] of Object.entries(playlists)) {
@@ -241,7 +241,7 @@ function Home() {
         </Box>
         
         <iframe
-          id="spotifyPlaylist" style={{display: 'none'}}
+          id="spotifyPlaylist" style={{display: 'none'}} title = "myFrame"
           src="https://open.spotify.com/embed/user/spotify/playlist/0ZtNpjS6cTeLIa1KpQ4cpp"
           width = {isMobile * 700} height="380" frameBorder="0" allowtransparency="true">
         </iframe>
