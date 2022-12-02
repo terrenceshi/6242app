@@ -25,9 +25,9 @@ def getPlaylists():
                         key: cujo - rock
                         values: [uri1, uri2, ...]
         '''
-        #Set up all the keys and stuff
-        SPOTIFY_CLIENT_ID ="8960c84e74964817bfb927e83f6e2b59"
-        SPOTIFY_SECRET ="3917b5e7cc3342189238c7290f99be3c"
+        #Set up all the keys and stuff 
+        SPOTIFY_CLIENT_ID ="" #INCOMPLETE CODE. KEYS REMOVED FOR SECURITY REASONS
+        SPOTIFY_SECRET =""
         REDIRECT_URL = "http://localhost:8080/"
 
         sp = spotipy.Spotify(
