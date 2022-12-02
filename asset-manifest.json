@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.5593f8b3.css",
-    "main.js": "/static/js/main.cbec2483.js",
+    "main.js": "/static/js/main.958ac59c.js",
     "static/js/787.bfd89369.chunk.js": "/static/js/787.bfd89369.chunk.js",
     "static/media/book_data_with_author.csv": "/static/media/book_data_with_author.0ae7d02ab7b2487906b2.csv",
     "index.html": "/index.html",
     "main.5593f8b3.css.map": "/static/css/main.5593f8b3.css.map",
-    "main.cbec2483.js.map": "/static/js/main.cbec2483.js.map",
+    "main.958ac59c.js.map": "/static/js/main.958ac59c.js.map",
     "787.bfd89369.chunk.js.map": "/static/js/787.bfd89369.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5593f8b3.css",
-    "static/js/main.cbec2483.js"
+    "static/js/main.958ac59c.js"
   ]
 }
