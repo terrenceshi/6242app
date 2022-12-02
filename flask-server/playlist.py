@@ -15,7 +15,7 @@ import io
 
 app = Flask(__name__)
 cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/", methods = ["POST"])
 @cross_origin()
@@ -126,6 +126,8 @@ def getPlaylists():
     hfile = client.get_object(Bucket = "b2n-heroku-bucket", Key = "model/H_rank100.pt")['Body']
     playlist_size = 15
     top_n = 1000
+
+    #request.headers.add("Access-Control-Allow-Origin", "*")
 
     query = request.json
     query = list(query.keys())[0]

@@ -103,6 +103,9 @@ function Home() {
       progress.style.display = 'inline';
     }
 
+    //https://b2n-backend2.herokuapp.com/
+    //http://127.0.0.1:5000
+
     axios.post('https://b2n-backend2.herokuapp.com', axiosInput)
         .then(function(response){
             console.log(response);
