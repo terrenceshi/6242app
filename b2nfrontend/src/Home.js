@@ -107,6 +107,8 @@ function Home() {
     //http://127.0.0.1:5000
     //http://3.140.47.122
 
+    //BACKEND GUIDE: https://medium.com/techfront/step-by-step-visual-guide-on-deploying-a-flask-application-on-aws-ec2-8e3e8b82c4f7
+
     axios.post('http://3.140.47.122', axiosInput)
         .then(function(response){
             console.log(response);
