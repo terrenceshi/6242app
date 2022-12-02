@@ -1,20 +1,43 @@
 # 6242app
 
-Currently have a requirements.txt based off of my notebook environment but its possible theres a bit too much stuff in there atm...
+Step 0.
+	Test out deployed web app on books2nooks.ml!
 
-pip install -r requirements.txt for the model.
+Step 1.
+	Pull or fork from main branch of github
+		https://github.com/terrenceshi/6242app
 
-npm install for the frontend (after u cd into frontend folder).
+Step 2: Setting up the frontend
+	Cd b2nfrontend
 
-Be sure to mainly work on dev branch and to make sure everything works well before pull request. I don't have any permissions for the pull request or anything so you can just do it whenever.
+	Be sure to have nodejs installed.
 
-You can also make your own branch if you'd like. Up to you.
+	Npm install
 
-----------------
-Under model stuff,
+	Npm start
 
-Notebookdata1 was what I doing, trying to accrue songs and using spotify and musixmatch api
+Technically, you can just run the app from here, as the frontend makes requests to the deployed backend. However, you can take step 3 and 4 to run the backend locally and make post requests to there.
 
-Notebookdata2 was what I used to create the new csv with the 5 million song dataset.
+(OPTIONAL) Step 3: Setting up the backend
+	Install requirements. You can choose to do so in a virtual environment.
+		Pip install -r requirements.txt
 
-Notebookdata3 will be what we'll use to create our training / testing set comparing the embeddings of lyrics and books and what not.
+	Go back to the root directory and cd flask-server
+
+	Edit playlist.py
+Go to line 41 and 42 and add values for the spotify keys
+
+		SPOTIFY_CLIENT_ID ="8960c84e74964817bfb927e83f6e2b59"
+        		SPOTIFY_SECRET ="3917b5e7cc3342189238c7290f99be3c"
+
+
+	Python playlist.py
+		The backend server should be running now.
+
+(OPTIONAL) Step 4: Connecting the local backend to the frontend
+	Get out of the backend and cd b2nfrontend/src
+
+	Modify home.js
+		Go to line 112: axios.post('https://b2nbackend.ml', axiosInput)
+
+Replace 'https://b2nbackend.ml' with whatever localhost the backend is running in. Typically, it should be http://127.0.0.1:5000
