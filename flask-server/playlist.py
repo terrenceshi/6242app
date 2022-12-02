@@ -119,12 +119,7 @@ def getPlaylists():
             #print('playlist exists already, here is link:')
             return links
 
-    client = boto3.client(
-        's3',
-        aws_access_key_id= "AKIAQVYK7Y7U46UDIBMP",
-        aws_secret_access_key= "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",
-        region_name = "us-east-1"
-    )
+    #this code is incomplete as i had to delete aws keys
 
     music_ix_fname = client.get_object(Bucket = "b2n-heroku-bucket", Key = "data/books_ix.csv")['Body']
     books_ix_fname = client.get_object(Bucket = "b2n-heroku-bucket", Key = "data/books_ix.csv")['Body']
