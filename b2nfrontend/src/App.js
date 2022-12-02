@@ -32,7 +32,9 @@ function App() {
         </div>
         
         <div className = "titleCard">
-          <Typography variant="h1">
+          <Typography variant="h1" 
+            className = "titleContent"
+            align = "center" >
             From Books to Nooks
           </Typography>
         </div>
