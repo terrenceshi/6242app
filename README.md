@@ -41,3 +41,5 @@ Go to line 41 and 42 and add values for the spotify keys
 		Go to line 112: axios.post('https://b2nbackend.ml', axiosInput)
 
 Replace 'https://b2nbackend.ml' with whatever localhost the backend is running in. Typically, it should be http://127.0.0.1:5000
+
+And you're set!
