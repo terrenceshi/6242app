@@ -28,7 +28,7 @@ Technically, you can just run the app from here, as the frontend makes requests 
 Go to line 41 and 42 and add values for the spotify keys
 
 		SPOTIFY_CLIENT_ID ="8960c84e74964817bfb927e83f6e2b59"
-        		SPOTIFY_SECRET ="3917b5e7cc3342189238c7290f99be3c"
+        	SPOTIFY_SECRET ="3917b5e7cc3342189238c7290f99be3c"
 
 
 	Python playlist.py
