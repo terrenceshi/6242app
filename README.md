@@ -7,7 +7,7 @@ Step 1.
 	Pull or fork from main branch of github
 		https://github.com/terrenceshi/6242app
 
-Step 2: Setting up the frontend
+Step 2: Setting up the frontend.
 	Cd b2nfrontend
 
 	Be sure to have nodejs installed.
@@ -18,7 +18,7 @@ Step 2: Setting up the frontend
 
 Technically, you can just run the app from here, as the frontend makes requests to the deployed backend. However, you can take step 3 and 4 to run the backend locally and make post requests to there.
 
-(OPTIONAL) Step 3: Setting up the backend
+(OPTIONAL) Step 3: Setting up the backend.
 	Install requirements. You can choose to do so in a virtual environment.
 		Pip install -r requirements.txt
 
@@ -34,7 +34,7 @@ Go to line 41 and 42 and add values for the spotify keys
 	Python playlist.py
 		The backend server should be running now.
 
-(OPTIONAL) Step 4: Connecting the local backend to the frontend
+(OPTIONAL) Step 4: Connecting the local backend to the frontend.
 	Get out of the backend and cd b2nfrontend/src
 
 	Modify home.js
